@@ -1,0 +1,26 @@
+{
+  "name": "batchcalls",
+  "version": "0.1.0",
+  "description": "Batches calls to a function and passes arguments as arrays",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/nodeunit/bin/nodeunit test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianalfoni/batchcalls.git"
+  },
+  "keywords": [
+    "batch",
+    "functions"
+  ],
+  "author": "christianalfoni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christianalfoni/batchcalls/issues"
+  },
+  "homepage": "https://github.com/christianalfoni/batchcalls",
+  "devDependencies": {
+    "nodeunit": "^0.9.1"
+  }
+}
