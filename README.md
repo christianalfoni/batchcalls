@@ -13,9 +13,22 @@ ids.forEach(request);
 
 ```js
 var batchCalls = require('batchcalls');
-var clicksEachSecond = batchCalls(function (events) {
+var clicksWithinSecond = batchCalls(function (events) {
   // Do something
-}, 1000);
+}, {
+  wait: 1000
+});
 
-document.body.addEventListener('click', clicksEachSecond);
+document.body.addEventListener('click', clicksWithinSecond);
+```
+
+```js
+var batchCalls = require('batchcalls');
+var executeAfter5Clicks = batchCalls(function (events) {
+  // Do something
+}, {
+  count: 5
+});
+
+document.body.addEventListener('click', executeAfter5Clicks);
 ```
