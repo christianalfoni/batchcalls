@@ -12,7 +12,7 @@ module.exports = function(callback, options) {
   return function() {
     count++;
     if ((!options.count && !dispatch) || count === options.count) {
-      dispatch = options.wait || !options.count ? setTimeout(execute.bind(this), options.wait || 0) : execute();
+      dispatch = options.wait || !options.count ? setTimeout(execute.bind(this), options.wait || 0) : execute.call(this);
     }
 
     if (
@@ -20,7 +20,7 @@ module.exports = function(callback, options) {
       options.conditional && !options.conditional([].slice.call(arguments), calls.reduce(function (args, arg) {
       return args.concat(arg[arg.length - 1]);
     }, []))) {
-      execute();
+      execute.call(this);
     }
 
 
