@@ -84,3 +84,25 @@ exports['should wait x calls and wait x milliseconds before trigger'] = function
     func();
 
 };
+
+exports['should wait until conditional causes trigger'] = function(test){
+
+    var runs = 0;
+    var func = batchCalls(function (args) {
+      runs++;
+      if (runs === 1) {
+        test.equal(args.length, 2);
+      } else if (runs === 2) {
+        test.equal(args.length, 1);
+        test.done();
+      }
+    }, {
+      conditional: function (current, previous) {
+        return current[0] === previous[0];
+      }
+    });
+    func(true);
+    func(true);
+    func(false);
+
+};

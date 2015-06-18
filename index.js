@@ -14,8 +14,19 @@ module.exports = function(callback, options) {
     if ((!options.count && !dispatch) || count === options.count) {
       dispatch = options.wait || !options.count ? setTimeout(execute.bind(this), options.wait || 0) : execute();
     }
+
+    if (
+      calls.length && calls[0].length > 1 && 
+      options.conditional && !options.conditional([].slice.call(arguments), calls.reduce(function (args, arg) {
+      return args.concat(arg[arg.length - 1]);
+    }, []))) {
+      execute();
+    }
+
+
     for (var x = 0; x < arguments.length; x++) {
       calls[x] = calls[x] ? calls[x].concat(arguments[x]) : [arguments[x]];
     }
+
   };
 };

@@ -32,3 +32,14 @@ var executeAfter5Clicks = batchCalls(function (events) {
 
 document.body.addEventListener('click', executeAfter5Clicks);
 ```
+
+```js
+var batchCalls = require('batchcalls');
+var executeOnConditional = batchCalls(function (batchedArgs) {
+  // Will batch as long as conditional is true
+}, {
+  conditional: function (args, prevArgs) {
+    return args[0].foo === prevArgs[0].foo;
+  }
+});
+```
